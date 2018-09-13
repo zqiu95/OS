@@ -1,0 +1,8 @@
+%exo 1.2
+
+%M = rand (4,9)
+%spam sort transpose
+
+Va = randi (10,1,10)
+Vb = randi (10,1,10)
+Vmax = Va>Vb

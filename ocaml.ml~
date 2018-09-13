@@ -1,0 +1,50 @@
+type 'e binary_tree =
+  |Empty
+  |Node_b of 'e * int * 'e binary_tree * 'e binary_tree
+
+let tree_a =
+  Node_b (12,1,
+          Node_b(8,1,
+                 Node_b (4,3,Empty,Empty),
+                 Node_b (9,2,Empty,
+                         Node_b(11,2,Empty,Empty))),
+          Node_b(23,1,Empty,Empty));;
+
+
+let print_node  = function
+   |Empty -> ""
+   |Node_b (value,n,left,right) -> "\""^string_of_int value^","^string_of_int n^"\""
+
+
+let print_tree tree =
+  let rec print_tree_aux tree =
+    match tree with
+    |Empty -> ()
+    |Node_b (value,n,Empty,Empty) -> ()
+     |Node_b (value,n,left,Empty) ->
+       begin
+         print_string ("\""^string_of_int value^","^string_of_int n^"\""^"->"^print_node left^"\n") ;
+         print_tree_aux left ;
+       end
+
+     |Node_b (value,n,Empty,right) ->
+       begin
+         print_string ("\""^string_of_int value^","^string_of_int n^"\""^"->"^print_node right^"\n") ;
+         print_tree_aux right ;
+       end
+
+     |Node_b (value,n,left,right) ->
+       begin
+         print_string ("\""^string_of_int value^","^string_of_int n^"\""^"->"^print_node left^"\n") ;
+         print_string ("\""^string_of_int value^","^string_of_int n^"\""^"->"^print_node right^"\n") ;
+         print_tree_aux left ;
+         print_tree_aux right ;
+       end
+  in
+   begin
+     print_string "diagraph G { \n" ;
+     print_tree_aux tree;
+     print_string "} \n" ;
+   end
+
+let () =  print_tree tree_a;;

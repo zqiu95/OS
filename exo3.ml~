@@ -1,0 +1,19 @@
+(* exo 3*)
+
+type 'a btree =
+  | Empty
+  | Node of 'a btree * int * int *'a btree ;; (*the second int is the rank of the node*)
+
+
+let rec countNodes btree = match btree with
+  |Empty -> 0
+  |Node (left,_,_,right) -> 1 + countNodes left + countNodes right ;;
+
+
+let rec aux btree number_nodes = match btree with
+  |Empty -> true
+  |Node (left,_,rank,right) -> if rank>number_nodes then false
+                              else aux right number_nodes && aux left number_nodes ;;
+
+let rec is_complete btree = aux btree (countNodes btree)
+;;

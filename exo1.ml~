@@ -1,0 +1,59 @@
+(* exo 1 *)
+
+
+type 'a tree234 =
+  (*Vide*)
+  |Empty
+
+  (* 2 noeuds*)
+  | Node2 of 'a tree234 * 'a * 'a tree234
+
+(* 3 noeuds*)
+  | Node3 of 'a tree234 * 'a * 'a tree234 * 'a * 'a tree234
+
+(* 4 noeuds*)
+  | Node4 of 'a tree234 * 'a * 'a tree234 * 'a * 'a tree234 * 'a * 'a tree234;;
+
+
+let example = Node2(  Node2( Empty , 1 , Empty ) , 6 , Node3( Empty, 7 ,Empty, 8 , Empty) );;
+
+let rec tree234_recherche t x =
+  match t with
+  |Empty -> false,"empty"
+  |Node2(gauche , a , droite) ->
+      if x=a then true,"node2"
+      else
+
+      if x>a
+      then tree234_recherche droite x
+      else tree234_recherche gauche x
+
+  |Node3(gauche , a , milieu , b , droite)->
+      if x=a || x=b then true,"node3"
+      else
+
+      if x>b
+      then tree234_recherche droite x
+      else if x<a
+      then tree234_recherche gauche x
+
+      else tree234_recherche milieu x
+
+
+
+  |Node4(gauche , a , mi_gauche , b , mi_droite , c , droite)->
+      if x=a || x=b || x=c then true,"node4"
+      else
+
+      if x>c
+      then tree234_recherche droite x
+      else if x<a
+      then tree234_recherche gauche x
+      else
+
+      if x>b
+      then tree234_recherche mi_droite x
+      else tree234_recherche mi_gauche x
+
+
+let main = tree234_recherche example 1;;

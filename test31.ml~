@@ -1,0 +1,20 @@
+type 'a btree =
+  Leaf of 'a |
+  Node of 'a btree * 'a * 'a btree;;
+
+let rec existe x t =
+  match t with
+    Leaf (x')-> if x'=x then true else false |
+    Node (fg,x',fd) -> if x'=x then true else existe x fg || existe x fd ;;
+
+let rec descendant x y t =
+  match t with
+    Leaf (x') -> false |
+    Node (fg,x',fd) -> if x'=x then existe y fg || existe y fd else descendant x y fg || descendant x y fd;;
+                    
+let rec croissant t =
+  match t with
+    Leaf (x) -> x |
+    Node (fg,x,fd) -> 
+               
+    

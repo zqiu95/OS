@@ -1,0 +1,18 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Exec=exo-open --launch TerminalEmulator
+Icon=utilities-terminal
+StartupNotify=false
+Terminal=false
+Categories=Utility;X-Xfce-Toplevel;
+Name=Terminal
+Name[en_GB]=Terminal
+Name[es]=Terminal
+Name[fr]=Terminal
+Name[it]=Terminale
+Comment=Use the command line
+Comment[en_GB]=Use the command line
+Comment[es]=Usar la línea de comandos
+Comment[fr]=Utiliser la ligne de commande
+Comment[it]=Usa la linea di comando

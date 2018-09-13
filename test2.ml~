@@ -1,0 +1,16 @@
+let rec remove x l = match l with
+    [] -> [] |
+    a::b -> if a = x then remove x b else a::remove x b ;;
+
+let rec appartient_a x l = match l with
+    [] -> false |
+    a::b when x = a -> true|
+    a::b -> appartient_a x b;;
+  
+let rec remove_repetition l = match l with
+    [] -> [] |
+    a::b -> if appartient_a a b then (remove a b &&  a::remove_repetition b) else a::remove_repetition b;;
+
+let rec has_repetition l = match l with
+    [] -> true|
+    a::b -> if remove_repetition l = l then true else false ;; 
